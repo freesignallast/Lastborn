@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LASTBORN FAMILY | Premium VIP SIGNAL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        crypto: {
+                            dark: '#0f172a',
+                            card: '#1e293b',
+                            primary: '#3b82f6',
+                            success: '#10b981',
+                            danger: '#ef4444',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        
+        .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+        .scrollbar-thin::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+        
+        #authModal { backdrop-filter: blur(8px); }
+        .brand-trigger { cursor: default; user-select: none; }
+        
+        @keyframes pulse-green {
+            0%, 100% { color: #10b981; }
+            50% { color: #34d399; }
+        }
+        .price-update { animation: pulse-green 0.5s ease-in-out; }
+
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-up { animation: slideUpFade 0.3s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-crypto-dark text-slate-200 font-sans h-screen flex overflow-hidden">
+
+    <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 hidden">
+        <div class="bg-crypto-card p-8 rounded-2xl border border-slate-700 w-full max-w-md shadow-2xl">
+            <div class="text-center mb-6">
+                <i class="fas fa-user-shield text-4xl text-crypto-primary mb-2"></i>
+                <h3 class="text-2xl font-bold text-white">ADMIN ID</h3>
+                <p class="text-slate-400 text-sm">Lastborn family studio</p>
+            </div>
+            <div class="space-y-4">
+                <input type="email" id="adminEmail" placeholder="Email Address" class="w-full bg-crypto-dark border border-slate-700 rounded-lg p-3 text-white outline-none focus:border-crypto-primary">
+                <input type="password" id="adminPassword" placeholder="Password" class="w-full bg-crypto-dark border border-slate-700 rounded-lg p-3 text-white outline-none focus:border-crypto-primary">
+                <div class="flex space-x-3 pt-2">
+                    <button onclick="closeAuthModal()" class="flex-1 bg-slate-700 hover:bg-slate-600 py-3 rounded-lg font-bold transition-all">Cancel</button>
+                    <button onclick="verifyAdmin()" class="flex-1 bg-crypto-primary hover:bg-blue-600 py-3 rounded-lg font-bold transition-all">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <aside class="w-72 bg-crypto-card border-r border-slate-800 flex flex-col hidden md:flex shrink-0">
+        <div class="p-5 border-b border-slate-800 shrink-0">
+            <h1 onclick="handleAdminAccess()" class="brand-trigger text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-crypto-primary to-purple-500 hover:opacity-80 transition-opacity active:scale-95">
+                LASTBORN FAMILY
+            </h1>
+            <p class="text-xs text-slate-400 mt-1">Professional Trading Hub</p>
+        </div>
+        
+        <div class="flex-1 flex flex-col min-h-0 overflow-hidden">
+            <nav class="p-4 shrink-0">
+                <button onclick="switchTab('dashboard')" class="nav-btn w-full flex items-center space-x-3 p-3 rounded-lg bg-crypto-primary/20 text-crypto-primary" data-target="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="font-medium">Live Signals</span>
+                </button>
+            </nav>
+
+            <div class="flex-1 overflow-hidden px-4 pb-4 flex flex-col">
+                <div class="flex-1 bg-crypto-dark/60 border border-slate-700/50 rounded-xl p-3 flex flex-col min-h-0 shadow-inner">
+                    <div class="flex items-center justify-between mb-2 shrink-0">
+                        <h3 class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fas fa-comment-dots text-crypto-primary"></i> Community Chat
+                        </h3>
+                        <span class="bg-crypto-primary/20 text-crypto-primary px-2 py-0.5 rounded text-[10px] font-bold" id="commentCount">1</span>
+                    </div>
+                    
+                    <div id="commentsList" class="flex-1 overflow-y-auto space-y-2 mb-3 pr-1 scrollbar-thin">
+                        <div class="bg-crypto-card border border-slate-800 rounded-lg p-2.5 animate-slide-up">
+                            <div class="flex justify-between items-start mb-1">
+                                <span class="text-[11px] font-bold text-crypto-primary">Mentor Admin</span>
+                                <span class="text-[9px] text-slate-500">System</span>
+                            </div>
+                            <p class="text-[11px] text-slate-300 leading-relaxed">Welcome to the VIP floor! Comments require admin approval to appear here.</p>
+                        </div>
+                    </div>
+
+                    <form id="commentForm" onsubmit="submitComment(event)" class="space-y-2 shrink-0">
+                        <input type="text" id="cmtName" placeholder="Your Name" required class="w-full bg-crypto-dark border border-slate-700 rounded-lg px-3 py-1.5 text-[11px] text-white focus:border-crypto-primary outline-none transition-all placeholder:text-slate-600">
+                        <input type="text" id="cmtEmail" placeholder="Email / Contact" required class="w-full bg-crypto-dark border border-slate-700 rounded-lg px-3 py-1.5 text-[11px] text-white focus:border-crypto-primary outline-none transition-all placeholder:text-slate-600">
+                        <textarea id="cmtText" placeholder="Write a comment..." required rows="2" class="w-full bg-crypto-dark border border-slate-700 rounded-lg px-3 py-1.5 text-[11px] text-white focus:border-crypto-primary outline-none transition-all resize-none placeholder:text-slate-600"></textarea>
+                        <button type="submit" id="submitCmtBtn" class="w-full bg-slate-700 hover:bg-crypto-primary text-white py-2 rounded-lg text-[11px] font-bold transition-all flex items-center justify-center gap-2 group">
+                            <span id="submitCmtText">Submit for Review</span>
+                            <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform" id="submitCmtIcon"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-5 border-t border-slate-800 bg-slate-800/20 shrink-0">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-crypto-primary shadow-[0_0_10px_rgba(59,130,246,0.3)]">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-white tracking-wide">PREMIUM SECTION🚀</p>
+                    <p class="text-[10px] text-crypto-success uppercase tracking-widest font-bold mt-0.5">Prin money 🤑</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-full overflow-y-auto">
+        <header class="md:hidden bg-crypto-card p-4 border-b border-slate-800 flex justify-between items-center">
+            <h1 onclick="handleAdminAccess()" class="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-crypto-primary to-purple-500">
+                LASTBORN FAMILY
+            </h1>
+            <div class="w-8"></div> 
+        </header>
+
+        <section id="dashboard" class="p-6 lg:p-10 tab-content block">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Market Signals</h2>
+                    <p class="text-slate-400 font-light">Real-time entries and analysis from the Lastborn Mentors.</p>
+                </div>
+                
+                <div class="w-full lg:w-auto flex flex-col sm:flex-row items-center gap-4 bg-crypto-card p-3 rounded-xl border border-slate-700 shadow-xl">
+                    <div class="relative w-full sm:w-64">
+                        <i class="fas fa-search absolute left-3 top-3.5 text-slate-500"></i>
+                        <input type="text" id="coinSearch" placeholder="Search (e.g. BTC, ETH, PEPE)" class="w-full bg-crypto-dark border border-slate-700 rounded-lg py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:border-crypto-primary uppercase text-white">
+                    </div>
+                    <button id="searchBtn" onclick="fetchBybitPrice()" class="w-full sm:w-auto bg-crypto-primary px-5 py-2.5 rounded-lg font-bold text-sm hover:bg-blue-600 transition-all flex items-center justify-center">
+                        <span id="btnText">Check Price</span>
+                    </button>
+                    <div class="flex flex-col items-end min-w-[140px] border-l border-slate-700 pl-4">
+                        <span id="displaySymbol" class="text-xs text-slate-500 font-bold uppercase tracking-tighter">BTC/USDT</span>
+                        <span id="liveBtcPrice" class="text-xl font-mono text-crypto-success tracking-tighter">$0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" id="signalContainer">
+                <div class="col-span-full py-24 flex flex-col items-center justify-center text-center">
+                    <div class="w-20 h-20 bg-crypto-dark border border-slate-700 rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.15)] mb-6">
+                        <i class="fas fa-crown text-4xl text-transparent bg-clip-text bg-gradient-to-r from-crypto-primary to-purple-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">The signal will be published soon!</h3>
+                    <p class="text-slate-400">Check back later for VIP market entries.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="admin" class="p-6 lg:p-10 tab-content hidden">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Mentor Studio</h2>
+                    <p class="text-slate-400">Broadcast signals and manage community comments.</p>
+                </div>
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <button onclick="clearAllSignals()" class="flex-1 md:flex-none bg-crypto-danger/10 text-crypto-danger border border-crypto-danger/30 px-4 py-2.5 rounded-lg font-bold hover:bg-crypto-danger hover:text-white transition-all">
+                        <i class="fas fa-trash-can mr-2"></i> Clear Dashboard
+                    </button>
+                    <button onclick="logoutAdmin()" class="flex-1 md:flex-none bg-slate-700 text-white border border-slate-600 px-4 py-2.5 rounded-lg font-bold hover:bg-slate-600 transition-all">
+                        <i class="fas fa-right-from-bracket mr-2"></i> Exit Studio
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                
+                <div class="xl:col-span-2 bg-crypto-card border border-slate-800 rounded-xl p-8 shadow-2xl">
+                    <h3 class="text-lg font-bold text-white mb-6 border-b border-slate-700 pb-3"><i class="fas fa-satellite-dish text-crypto-primary mr-2"></i> Broadcast Signal</h3>
+                    <form id="postSignalForm" onsubmit="handlePostSignal(event)" class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-2">Trading Pair</label><input type="text" id="assetPair" placeholder="ETH/USDT" required class="w-full bg-crypto-dark border border-slate-700 rounded-lg p-3 text-white focus:border-crypto-primary uppercase outline-none"></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-2">Action</label><select id="actionType" class="w-full bg-crypto-dark border border-slate-700 rounded-lg p-3 text-white outline-none"><option value="LONG">LONG / BUY</option><option value="SHORT">SHORT / SELL</option></select></div>
+                        </div>
+                        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-2">Entry Zone</label><input type="text" id="entryZone" placeholder="3400 - 3450" required class="w-full bg-crypto-dark border border-slate-700 rounded-lg p-3 text-white outline-none focus:border-crypto-primary"></div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-2">Take Profit</label><input type="text" id="tp1" required class="w-full bg-crypto-dark border border-slate-700 rounded-lg p-3 text-white outline-none focus:border-crypto-success"></div>
+                            <div><label class="block text-xs font-bold text-slate-500 uppercase mb-2">Stop Loss</label><input type="text" id="stopLoss" required class="w-full bg-crypto-dark border border-slate-700 rounded-lg p-3 text-white outline-none focus:border-crypto-danger"></div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Mentor Note</label>
+                            <textarea id="mentorNote" rows="3" placeholder="Add management advice..." class="w-full bg-crypto-dark border border-slate-700 rounded-lg p-3 text-white outline-none focus:border-crypto-primary resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-crypto-primary to-blue-600 text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-blue-500/20 transition-all">
+                            <i class="fas fa-paper-plane mr-2"></i> Broadcast Signal
+                        </button>
+                    </form>
+                </div>
+
+                <div class="xl:col-span-1 bg-crypto-card border border-slate-800 rounded-xl p-6 shadow-2xl flex flex-col h-[650px]">
+                    <div class="flex items-center justify-between mb-4 border-b border-slate-700 pb-3 shrink-0">
+                        <h3 class="text-lg font-bold text-white"><i class="fas fa-shield-halved text-purple-500 mr-2"></i> Moderation Queue</h3>
+                        <span id="pendingBadge" class="bg-purple-500/20 text-purple-400 border border-purple-500/30 px-2.5 py-0.5 rounded-full text-xs font-bold">0 Pending</span>
+                    </div>
+                    
+                    <div id="moderationList" class="flex-1 overflow-y-auto space-y-3 pr-2 scrollbar-thin">
+                        <div id="noPendingMsg" class="flex flex-col items-center justify-center h-full text-center opacity-50">
+                            <i class="fas fa-check-double text-4xl mb-3 text-slate-500"></i>
+                            <p class="text-sm text-slate-400">Queue is empty.<br>All caught up!</p>
+                        </div>
+                        </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let isAuthenticated = false;
+        let currentSymbol = "BTCUSDT";
+        
+        // Database simulation for pending comments
+        let commentIdCounter = 0;
+        const pendingComments = {};
+
+        // --- AUTH ---
+        function handleAdminAccess() {
+            if (isAuthenticated) switchTab('admin');
+            else document.getElementById('authModal').classList.remove('hidden');
+        }
+        function closeAuthModal() { document.getElementById('authModal').classList.add('hidden'); }
+        function verifyAdmin() {
+            const email = document.getElementById('adminEmail').value;
+            const pass = document.getElementById('adminPassword').value;
+            if (email === "wailariconnect@gmail.com" && pass === "Muhammad") {
+                isAuthenticated = true; closeAuthModal(); switchTab('admin');
+            } else alert("Invalid Credentials.");
+        }
+        function logoutAdmin() {
+            isAuthenticated = false; switchTab('dashboard');
+            document.getElementById('adminEmail').value = "";
+            document.getElementById('adminPassword').value = "";
+        }
+
+        function copyData(text, btnElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHTML = btnElement.innerHTML;
+                btnElement.innerHTML = '<i class="fas fa-check text-crypto-success"></i>';
+                setTimeout(() => { btnElement.innerHTML = originalHTML; }, 1500);
+            }).catch(err => console.error('Failed to copy: ', err));
+        }
+
+        // --- NEW MODERATION COMMENT LOGIC ---
+        function submitComment(e) {
+            e.preventDefault();
+            const name = document.getElementById('cmtName').value.trim();
+            const email = document.getElementById('cmtEmail').value.trim();
+            const text = document.getElementById('cmtText').value.trim();
+
+            if (name && email && text) {
+                const btn = document.getElementById('submitCmtBtn');
+                const btnText = document.getElementById('submitCmtText');
+                const btnIcon = document.getElementById('submitCmtIcon');
+
+                btnText.innerText = "Processing...";
+                btnIcon.className = "fas fa-spinner fa-spin";
+                btn.classList.add('bg-crypto-primary');
+                btn.classList.remove('bg-slate-700', 'hover:bg-crypto-primary');
+
+                setTimeout(() => {
+                    const timeString = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    const id = 'cmt_' + (++commentIdCounter);
+                    
+                    // Store in memory queue
+                    pendingComments[id] = { name, email, text, timeString };
+
+                    // Add to Admin Moderation UI
+                    const pendingHTML = `
+                        <div id="mod_${id}" class="bg-crypto-dark border border-slate-700 rounded-lg p-3 animate-slide-up relative">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <span class="text-sm font-bold text-white block">${name}</span>
+                                    <span class="text-[10px] text-slate-500">${email}</span>
+                                </div>
+                                <span class="text-[10px] text-slate-500 bg-slate-800 px-2 py-0.5 rounded">${timeString}</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed break-words mb-3 border-l-2 border-slate-600 pl-2">${text}</p>
+                            <div class="flex gap-2">
+                                <button onclick="approveComment('${id}')" class="flex-1 bg-crypto-success/10 text-crypto-success hover:bg-crypto-success hover:text-white py-1.5 rounded text-xs font-bold transition-all border border-crypto-success/30 flex items-center justify-center gap-1"><i class="fas fa-check"></i> Approve</button>
+                                <button onclick="rejectComment('${id}')" class="flex-1 bg-crypto-danger/10 text-crypto-danger hover:bg-crypto-danger hover:text-white py-1.5 rounded text-xs font-bold transition-all border border-crypto-danger/30 flex items-center justify-center gap-1"><i class="fas fa-xmark"></i> Reject</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.getElementById('noPendingMsg').style.display = 'none';
+                    document.getElementById('moderationList').insertAdjacentHTML('afterbegin', pendingHTML);
+                    updateQueueBadge();
+
+                    // UI Reset for User
+                    document.getElementById('commentForm').reset();
+                    btnText.innerText = "Sent for Review!";
+                    btnIcon.className = "fas fa-shield-halved";
+                    btn.classList.replace('bg-crypto-primary', 'bg-purple-600');
+
+                    setTimeout(() => {
+                        btnText.innerText = "Submit for Review";
+                        btnIcon.className = "fas fa-paper-plane group-hover:translate-x-1 transition-transform";
+                        btn.classList.replace('bg-purple-600', 'bg-slate-700');
+                        btn.classList.add('hover:bg-crypto-primary');
+                    }, 3500);
+
+                }, 800);
+            }
+        }
+
+        function approveComment(id) {
+            const comment = pendingComments[id];
+            if(!comment) return;
+
+            // 1. Inject into live public sidebar
+            const publicHTML = `
+                <div class="bg-crypto-card border border-slate-800 rounded-lg p-2.5 animate-slide-up">
+                    <div class="flex justify-between items-start mb-1">
+                        <span class="text-[11px] font-bold text-white">${comment.name}</span>
+                        <span class="text-[9px] text-slate-500">${comment.timeString}</span>
+                    </div>
+                    <p class="text-[11px] text-slate-300 leading-relaxed break-words">${comment.text}</p>
+                </div>
+            `;
+            const list = document.getElementById('commentsList');
+            list.insertAdjacentHTML('beforeend', publicHTML);
+            list.scrollTop = list.scrollHeight; 
+
+            // Update Public Counter
+            const countEl = document.getElementById('commentCount');
+            countEl.innerText = parseInt(countEl.innerText) + 1;
+
+            // 2. Remove from Admin Queue
+            finalizeModeration(id);
+        }
+
+        function rejectComment(id) {
+            finalizeModeration(id);
+        }
+
+        function finalizeModeration(id) {
+            delete pendingComments[id];
+            const modElement = document.getElementById('mod_' + id);
+            if(modElement) {
+                modElement.style.opacity = '0';
+                modElement.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    modElement.remove();
+                    updateQueueBadge();
+                }, 200);
+            }
+        }
+
+        function updateQueueBadge() {
+            const count = Object.keys(pendingComments).length;
+            document.getElementById('pendingBadge').innerText = `${count} Pending`;
+            if(count === 0) {
+                document.getElementById('noPendingMsg').style.display = 'flex';
+            }
+        }
+
+
+        // --- BYBIT API LOGIC ---
+        async function fetchBybitPrice() {
+            let input = document.getElementById('coinSearch').value.trim().toUpperCase();
+            if (!input) return;
+            if (!input.endsWith("USDT")) input += "USDT";
+
+            const btn = document.getElementById('searchBtn');
+            const btnText = document.getElementById('btnText');
+            
+            btn.disabled = true;
+            btnText.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+            try {
+                const url = `https://api.bybit.com/v5/market/tickers?category=linear&symbol=${input}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.retCode === 0 && data.result.list.length > 0) {
+                    const ticker = data.result.list[0];
+                    currentSymbol = input;
+                    updatePriceDisplay(ticker.markPrice || ticker.lastPrice, input);
+                    document.getElementById('coinSearch').value = "";
+                } else {
+                    const spotUrl = `https://api.bybit.com/v5/market/tickers?category=spot&symbol=${input}`;
+                    const spotRes = await fetch(spotUrl);
+                    const spotData = await spotRes.json();
+                    
+                    if (spotData.retCode === 0 && spotData.result.list.length > 0) {
+                        const spotTicker = spotData.result.list[0];
+                        currentSymbol = input;
+                        updatePriceDisplay(spotTicker.lastPrice, input);
+                        document.getElementById('coinSearch').value = "";
+                    } else {
+                        alert(`Symbol "${input}" not found on Bybit (Linear or Spot).`);
+                    }
+                }
+            } catch (error) {
+                console.error("API Error:", error);
+                alert("Connection error. Please try again.");
+            } finally {
+                btn.disabled = false;
+                btnText.innerText = "Check Price";
+            }
+        }
+
+        function updatePriceDisplay(price, symbol) {
+            const priceEl = document.getElementById('liveBtcPrice');
+            const symEl = document.getElementById('displaySymbol');
+            
+            symEl.innerText = symbol.replace("USDT", "/USDT");
+            const parsedPrice = parseFloat(price);
+            const formattedPrice = parsedPrice.toLocaleString(undefined, {
+                minimumFractionDigits: parsedPrice < 1 ? 4 : 2,
+                maximumFractionDigits: parsedPrice < 1 ? 6 : 2
+            });
+            
+            priceEl.innerText = `$${formattedPrice}`;
+            priceEl.classList.remove('price-update');
+            void priceEl.offsetWidth; 
+            priceEl.classList.add('price-update');
+        }
+
+        // --- BACKGROUND POLLING ---
+        setInterval(async () => {
+            try {
+                const response = await fetch(`https://api.bybit.com/v5/market/tickers?category=linear&symbol=${currentSymbol}`);
+                const data = await response.json();
+                if (data.retCode === 0 && data.result.list.length > 0) {
+                    updatePriceDisplay(data.result.list[0].markPrice || data.result.list[0].lastPrice, currentSymbol);
+                } else {
+                    const spotResponse = await fetch(`https://api.bybit.com/v5/market/tickers?category=spot&symbol=${currentSymbol}`);
+                    const spotData = await spotResponse.json();
+                    if (spotData.retCode === 0 && spotData.result.list.length > 0) {
+                        updatePriceDisplay(spotData.result.list[0].lastPrice, currentSymbol);
+                    }
+                }
+            } catch (e) {
+                // Fail silently
+            }
+        }, 5000);
+
+        // --- UI NAVIGATION ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if(btn.dataset.target === tabId) btn.classList.add('bg-crypto-primary/20', 'text-crypto-primary');
+                else btn.classList.remove('bg-crypto-primary/20', 'text-crypto-primary');
+            });
+        }
+
+        function clearAllSignals() {
+            if(confirm("Clear dashboard?")) {
+                document.getElementById('signalContainer').innerHTML = `
+                <div class="col-span-full py-24 flex flex-col items-center justify-center text-center">
+                    <div class="w-20 h-20 bg-crypto-dark border border-slate-700 rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.15)] mb-6">
+                        <i class="fas fa-crown text-4xl text-transparent bg-clip-text bg-gradient-to-r from-crypto-primary to-purple-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">The signal will be published soon!</h3>
+                    <p class="text-slate-400">Check back later for VIP market entries.</p>
+                </div>`;
+            }
+        }
+
+        function handlePostSignal(e) {
+            e.preventDefault();
+            const pair = document.getElementById('assetPair').value.toUpperCase();
+            const action = document.getElementById('actionType').value;
+            const entry = document.getElementById('entryZone').value;
+            const tp1 = document.getElementById('tp1').value;
+            const sl = document.getElementById('stopLoss').value;
+            const note = document.getElementById('mentorNote').value.trim();
+
+            const entryMatch = entry.match(/\d+(\.\d+)?/);
+            const slMatch = sl.match(/\d+(\.\d+)?/);
+
+            if (entryMatch && slMatch) {
+                const entryNum = parseFloat(entryMatch[0]);
+                const slNum = parseFloat(slMatch[0]);
+                if (action === 'LONG' && slNum >= entryNum) {
+                    alert("Invalid Signal: For a LONG position, the Stop Loss must be below the Entry zone.");
+                    return;
+                }
+                if (action === 'SHORT' && slNum <= entryNum) {
+                    alert("Invalid Signal: For a SHORT position, the Stop Loss must be above the Entry zone.");
+                    return;
+                }
+            }
+
+            const actionColor = action === 'LONG' ? 'text-crypto-success bg-crypto-success/20 border-crypto-success/30' : 'text-crypto-danger bg-crypto-danger/20 border-crypto-danger/30';
+            
+            const cardHTML = `
+                <div class="signal-card bg-crypto-card border border-slate-800 rounded-xl overflow-hidden shadow-lg animate-slide-up duration-500">
+                    <div class="p-5 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
+                        <div><h3 class="font-bold text-lg">${pair}</h3><p class="text-xs text-slate-400">Spot/Futures</p></div>
+                        <span class="px-3 py-1 rounded-md ${actionColor} font-bold text-sm border">${action}</span>
+                    </div>
+                    <div class="p-5 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-slate-400">Entry</span>
+                            <div class="flex items-center gap-3">
+                                <span class="font-mono font-bold">${entry}</span>
+                                <button onclick="copyData('${entry}', this)" class="text-slate-500 hover:text-white transition-colors" title="Copy Entry"><i class="far fa-copy"></i></button>
+                            </div>
+                        </div>
+                        <div class="bg-slate-800/50 p-3 rounded border border-slate-700 flex justify-between items-center">
+                            <span class="text-sm">Target</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-crypto-success font-mono font-bold">${tp1}</span>
+                                <button onclick="copyData('${tp1}', this)" class="text-slate-500 hover:text-crypto-success transition-colors" title="Copy Take Profit"><i class="far fa-copy"></i></button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-2 border-t border-slate-800">
+                            <span class="text-sm text-slate-400">Stop Loss</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-crypto-danger font-bold font-mono">${sl}</span>
+                                <button onclick="copyData('${sl}', this)" class="text-slate-500 hover:text-crypto-danger transition-colors" title="Copy Stop Loss"><i class="far fa-copy"></i></button>
+                            </div>
+                        </div>
+                        ${note ? `<div class="bg-blue-500/10 border border-blue-500/20 rounded-lg p-3 mt-2"><p class="text-sm text-slate-300 italic">"${note}"</p></div>` : ''}
+                    </div>
+                </div>`;
+
+            const container = document.getElementById('signalContainer');
+            if (container.innerHTML.includes('The signal will be published soon')) container.innerHTML = '';
+            container.insertAdjacentHTML('afterbegin', cardHTML);
+            document.getElementById('postSignalForm').reset();
+            switchTab('dashboard');
+        }
+
+        window.onload = () => fetchBybitPrice();
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
